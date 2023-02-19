@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -54,30 +55,32 @@ namespace ConsoleApplication12
                     y = fy - sy;
                 }
             }
-            if (((sz == c || sz == 0) && (fy == a || fy == 0)) || ((fz == c || fz == 0) && (sy == a || sy == 0)))
+            if (((sz == c || sz == 0) && (fy == b || fy == 0)) || ((fz == c || fz == 0) && (sy == b || sy == 0)))
             {
-                if ((sz == c && fy == 0) || (fz == c && sy == a))
+                if ((sz == c && fy == 0) || (fz == c && sy == b))
                 {
                     y = (c - fz) + (sy);
                     x = sx - fx;
                 }
-                if ((fz == c && sy == 0) || (sz == c && fy == a))
+                if ((fz == c && sy == 0) || (sz == c && fy == b))
                 {
                     y = (c - sz) + (fy);
                     x = fx - sx;
                 }
             }
-            if (((sx == a || sx == 0) && (fy == a || fy == 0)) || ((fx == a || fx == 0) && (sy == a || sy == 0)))
+            if (((sx == a || sx == 0) && (fx == a || fx == 0)) || ((fx == a || fx == 0) && (sx == a || sx == 0)))
             {
-                if ((sx == a && fy == b) || (fx == 0 && sy == 0))
+                if ((sx == a && fx == 0) || (fx == a && sx == 0))
                 {
-                    y = (c - fz) + (sy);
-                    x = (c - sz) + fx;
+                    z = c-fz + c-sz;
+                    y = b;
+                    x = fx - sx;
                 }
-                if ((fz == c && sy == 0) || (sz == c && fy == a))
+                if ((fy == b && sy == 0) || (sy == b && fy == 0))
                 {
-                    y = (c - sz) + (fy);
-                    x = (c - fz) + sx;
+                    z = c - fz + c - sz;
+                    x = a;
+                    y = fy - sy;
                 }
             }
             s = Math.Sqrt(x * x + y * y + z * z);
